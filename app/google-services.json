@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "328621360458",
+    "firebase_url": "https://purplechat-aa528.firebaseio.com",
+    "project_id": "purplechat-aa528",
+    "storage_bucket": "purplechat-aa528.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328621360458:android:388e4d4eee26ae3f",
+        "android_client_info": {
+          "package_name": "utconnect.samapplab.com.utconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328621360458-krpeuif1drvf0430bp9i0q7bo3qcippt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVyIZDlcUvH16GQO2hvST3YPKr-a5rf7g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
