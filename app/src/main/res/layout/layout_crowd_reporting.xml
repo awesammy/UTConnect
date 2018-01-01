@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/round_rect"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView_alert_title"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="Crowd Reporter" />
+    <TextView
+        android:id="@+id/textView_alert_content"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15sp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:text="You are now crowd reporting the service name" />
+    <Button
+        android:id="@+id/button_alert_service0"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="0 Service Closed"/>
+    <Button
+        android:id="@+id/button_alert_service5"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="5 Full"/>
+    <Button
+        android:id="@+id/button_alert_service4"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="4 Packed"/>
+    <Button
+        android:id="@+id/button_alert_service3"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="3 Moderate"/>
+    <Button
+        android:id="@+id/button_alert_service2"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="2 Normal"/>
+    <Button
+        android:id="@+id/button_alert_service1"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="1 Empty"/>
 
 </LinearLayout>

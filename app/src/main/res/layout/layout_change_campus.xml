@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/round_rect"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView_alert_campus_title"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Change Campus" />
+    <TextView
+        android:id="@+id/textView_alert_campus_content"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15sp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:text="You can change to other UofT campuses" />
+    <Button
+        android:id="@+id/button_alert_campus_utm"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="UTM"/>
+    <Button
+        android:id="@+id/button_alert_campus_utsg"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="UTSG"/>
+    <Button
+        android:id="@+id/button_alert_campus_utsc"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:background="@color/purple"
+        android:text="UTSC"/>
 
 </LinearLayout>
