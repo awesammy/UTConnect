@@ -1,11 +1,15 @@
 package utconnect.samapplab.com.utconnect;
 
+import android.*;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.Settings;
@@ -42,6 +46,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +56,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.*;
 
 import org.w3c.dom.Text;
 
@@ -77,6 +85,7 @@ public class TabbedActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     FloatingActionButton fab;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,16 +116,17 @@ public class TabbedActivity extends AppCompatActivity {
 
 
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Snackbar.make(view, "Going to Google Map", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                startActivity(intent);
-
+                if (fAuth.getCurrentUser() != null){
+                    Intent intent = new Intent(getApplicationContext(),AccountActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    handleLogin();
+                }
 
             }
         });
@@ -152,6 +162,37 @@ public class TabbedActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+    public void handleLogin(){
+        AlertDialog.Builder aBuilder = new AlertDialog.Builder(TabbedActivity.this);
+        aBuilder.setTitle("Login/Register");
+        aBuilder.setMessage("You can login or create your account with your UofT email and new password");
+        aBuilder.setCancelable(true)
+                .setPositiveButton("Login", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNeutralButton("Register", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        AlertDialog alertDialog = aBuilder.create();
+        alertDialog.show();
+    }
+
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -161,6 +202,7 @@ public class TabbedActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+
 
         private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         private DatabaseReference refServices = rootRef.child("ShopService");
@@ -258,6 +300,7 @@ public class TabbedActivity extends AppCompatActivity {
 
                         serviceData = new HashMap<String,Object>();
                         serviceData = (HashMap<String, Object>) dataSnapshot.getValue();
+                        System.out.println(serviceData.toString());
                         if (button_changeCampus != null && adapter != null){
                             functionReloading(button_changeCampus,adapter);
                         }
@@ -273,7 +316,7 @@ public class TabbedActivity extends AppCompatActivity {
 
                 return rootView;
             }
-            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2){
+            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3){
                 View rootView = inflater.inflate(R.layout.fragment_viewme, container, false);
 
 
@@ -360,13 +403,9 @@ public class TabbedActivity extends AppCompatActivity {
 
                 return rootView;
             }
-            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3){
-                View rootView = inflater.inflate(R.layout.fragment_viewme, container, false);
+            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2){
+                View rootView = inflater.inflate(R.layout.fragment_viewcontacts, container, false);
 
-                String[] services = {"One","Two","Three","Four","Five","Seven"};
-                ListAdapter adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,services);
-                //ListView listView = (ListView) rootView.findViewById(R.id.listview_me);
-                //listView.setAdapter(adapter);
 
                 return rootView;
             }
@@ -475,7 +514,7 @@ public class TabbedActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -484,6 +523,8 @@ public class TabbedActivity extends AppCompatActivity {
                 case 0:
                     return "Services";
                 case 1:
+                    return "Contacts";
+                case 2:
                     return "About";
             }
             return null;

@@ -47,6 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/icon_map" />
+        app:srcCompat="@drawable/android_utconnect_account" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AlertDialogCustom" parent="AppTheme.NoActionBar">
+        <item name="android:colorPrimary">#00397F</item>
+        <item name="android:colorAccent">#800080</item>
+    </style>
+</resources>
