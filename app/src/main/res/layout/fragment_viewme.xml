@@ -7,62 +7,79 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textView_me_title"
+        <ScrollView
+            android:id="@+id/scrollView_me"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:text="UTConnect" />
-        <TextView
-            android:id="@+id/textView_me_intro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:textAlignment="textStart"
-            android:textSize="22sp"
-            android:textStyle="italic"
-            android:text="UTConnect for Android is the service manager for all UofT campuses.\n\nVersion:0.5.0" />
-        <Button
-            android:id="@+id/button_me_checkupdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            android:text="Check Update"/>
-        <Button
-            android:id="@+id/button_me_contactdev"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            android:text="Contact Developer"/>
-        <Button
-            android:id="@+id/button_me_rateus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5sp"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            android:text="Rate Us"/>
-    </LinearLayout>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView_me_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="UTConnect" />
+            <TextView
+                android:id="@+id/textView_me_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:gravity="left"
+                android:textSize="22sp"
+                android:textStyle="italic"
+                android:text="UTConnect for Android is the service manager for all UofT campuses.\n\nVersion:0.5.0" />
+
+            <Button
+                android:id="@+id/button_me_checkupdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:text="Check Update"/>
+            <Button
+                android:id="@+id/button_me_contactdev"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:text="Contact Developer"/>
+            <Button
+                android:id="@+id/button_me_rateus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:text="Rate Us"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
 </FrameLayout>

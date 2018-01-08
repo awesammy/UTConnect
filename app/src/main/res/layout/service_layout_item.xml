@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:padding="5dp"
     android:weightSum="1">
 
 
@@ -15,7 +16,7 @@
         android:text="Starbucks Canada"
         android:layout_gravity="left"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="26sp"
+        android:textSize="28dp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -103,10 +104,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="5sp"
             android:layout_weight="50"
-            android:background="#ffffff"
+            android:background="@android:color/transparent"
             android:text="Crowd Report"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textColor="#000000"
+            android:textColor="@color/purple"
             android:textSize="15sp" />
 
         <Button
@@ -117,10 +118,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="5sp"
             android:layout_weight="50"
-            android:background="#ffffff"
+            android:background="@android:color/transparent"
             android:text="Goto Location"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textColor="#000000"
+            android:textColor="@color/purple"
             android:textSize="15sp" />
 
 

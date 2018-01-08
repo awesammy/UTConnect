@@ -3,12 +3,159 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#000000"
-        android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView_contact_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Math and Computer Science"
+                android:textColor="#000000"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="90"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/textView_contact_campus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="UTM"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_weight="30"/>
+                <TextView
+                    android:id="@+id/textView_contact_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Office"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_weight="30"/>
+
+                <Button
+                    android:id="@+id/button_contact_add_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="right"
+                    android:background="@android:color/transparent"
+                    android:text="Expand"
+                    android:textColor="@color/purple"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_contact_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_contact_email_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="utmsu@mail.utoronto.ca"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:layout_weight="70"/>
+                <Button
+                    android:id="@+id/button_contact_send_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="right"
+                    android:background="@android:color/transparent"
+                    android:text="Send Email"
+                    android:textColor="@color/purple"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_contact_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_contact_phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+1 (800)-8800-8800"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:layout_weight="70"/>
+                <Button
+                    android:id="@+id/button_contact_call_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="right"
+                    android:background="@android:color/transparent"
+                    android:text="Call Us"
+                    android:textColor="@color/purple"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_contact_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_contact_website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://www.utm.utoronto.ca"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:layout_weight="70"/>
+                <Button
+                    android:id="@+id/button_contact_visit_website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:gravity="right"
+                    android:background="@android:color/transparent"
+                    android:text="Visit Website"
+                    android:textColor="@color/purple"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 </LinearLayout>

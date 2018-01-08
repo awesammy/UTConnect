@@ -36,6 +36,7 @@ import android.view.ViewGroup;
 
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -115,8 +116,7 @@ public class TabbedActivity extends AppCompatActivity {
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#800080")));
 
 
-
-
+        fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,12 +206,15 @@ public class TabbedActivity extends AppCompatActivity {
 
         private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         private DatabaseReference refServices = rootRef.child("ShopService");
+        private DatabaseReference refContacts = rootRef.child("Services");
 
         HashMap<String,Object> serviceData = new HashMap<String,Object>();
-
+        HashMap<String,Object> contactData = new HashMap<String,Object>();
 
         ArrayList<Service> services = new ArrayList<>();
+        ArrayList<Contact> contacts = new ArrayList<>();
         ListView listView;
+        ListView contactListView;
 
 
         public PlaceholderFragment() {
@@ -247,9 +250,35 @@ public class TabbedActivity extends AppCompatActivity {
                 listView = (ListView) rootView.findViewById(R.id.listview_service);
                 listView.setAdapter(adapter);
 
+
+
+
                 final String campusSelected = "UTM";
                 final Button button_changeCampus = (Button) rootView.findViewById(R.id.button_service_change_campus);
                 button_changeCampus.setText(campusSelected);
+
+                listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
+                                && (listView.getLastVisiblePosition() - listView.getHeaderViewsCount() -
+                                listView.getFooterViewsCount()) >= (adapter.getCount() - 1)) {
+                            // Now your listview has hit the bottom
+                            button_changeCampus.setVisibility(View.GONE);
+                        }
+                        else{
+                            button_changeCampus.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                    }
+                });
+
+
+
                 button_changeCampus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -326,9 +355,11 @@ public class TabbedActivity extends AppCompatActivity {
                 Button buttonUpdate = (Button) rootView.findViewById(R.id.button_me_checkupdate);
                 Button buttonRate = (Button) rootView.findViewById(R.id.button_me_rateus);
 
+
+
                 introText.setText("UTConnect: Minimal Viable Product for Android." +
-                        "\nVersion: 0.5.0\nFrom: UTConnect Team\n\nWe provide service crowd reports for " +
-                        "services in UofT campuses");
+                        "\nVersion: 0.5.2\nFrom: UTConnect Team\n\nWe provide service crowd reports for " +
+                        "services in every UofT campus.");
                 //introText.setTextColor(Color.parseColor("##A9A9A9"));
 
                 buttonContact.setOnClickListener(new View.OnClickListener() {
@@ -406,6 +437,98 @@ public class TabbedActivity extends AppCompatActivity {
             else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2){
                 View rootView = inflater.inflate(R.layout.fragment_viewcontacts, container, false);
 
+                final String campusSelected = "UTM";
+                final Button button_changeCampus = (Button) rootView.findViewById(R.id.button_contact_change_campus);
+                button_changeCampus.setText(campusSelected);
+
+
+                contactListView = (ListView) rootView.findViewById(R.id.listview_contacts);
+
+                final ContactAdaptor contactAdaptor = new ContactAdaptor(getContext(),contacts);
+                contactListView.setAdapter(contactAdaptor);
+
+                contactListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
+                                && (contactListView.getLastVisiblePosition() - contactListView.getHeaderViewsCount() -
+                                contactListView.getFooterViewsCount()) >= (contactAdaptor.getCount() - 1)) {
+                            // Now your listview has hit the bottom
+                            button_changeCampus.setVisibility(View.GONE);
+                        }
+                        else{
+                            button_changeCampus.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                    }
+                });
+
+
+
+                button_changeCampus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                        LayoutInflater inflater = LayoutInflater.from(getContext());
+                        View layoutView = inflater.inflate(R.layout.layout_change_campus,null);
+
+                        aBuilder.setView(layoutView);
+                        final AlertDialog alertDialog = aBuilder.create();
+
+                        Button button_campus_utm = (Button) layoutView.findViewById(R.id.button_alert_campus_utm);
+                        Button button_campus_utsg = (Button) layoutView.findViewById(R.id.button_alert_campus_utsg);
+                        Button button_campus_utsc = (Button) layoutView.findViewById(R.id.button_alert_campus_utsc);
+
+                        button_campus_utm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                button_changeCampus.setText("UTM");
+                                contactReloading(button_changeCampus,contactAdaptor);
+                                alertDialog.cancel();
+
+                            }
+                        });
+                        button_campus_utsg.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                button_changeCampus.setText("UTSG");
+                                contactReloading(button_changeCampus,contactAdaptor);
+                                alertDialog.cancel();
+                            }
+                        });
+                        button_campus_utsc.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                button_changeCampus.setText("UTSC");
+                                contactReloading(button_changeCampus,contactAdaptor);
+                                alertDialog.cancel();
+                            }
+                        });
+
+                        alertDialog.show();
+                    }
+                });
+
+
+
+                refContacts.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        contactData = new HashMap<String,Object>();
+                        contactData = (HashMap<String, Object>) dataSnapshot.getValue();
+                        contactReloading(button_changeCampus,contactAdaptor);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
                 return rootView;
             }
@@ -416,7 +539,7 @@ public class TabbedActivity extends AppCompatActivity {
 
         }
 
-        private void functionReloading(Button buttonChange, ArrayAdapter adapter){
+        private void functionReloading(final Button buttonChange, final ArrayAdapter adapter){
             services.clear();
             adapter.notifyDataSetChanged();
 
@@ -484,7 +607,67 @@ public class TabbedActivity extends AppCompatActivity {
                 }
             }
 
+            if (services.isEmpty()){
+                Snackbar.make(getView(),"Oops, we tried loading, but no service found here\nTap to reload...",Snackbar.LENGTH_LONG).setAction("", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        functionReloading(buttonChange,adapter);
+                    }
+                }).show();
+            }
+
         }
+
+
+        private void contactReloading(final Button button, final BaseAdapter adapter){
+            contacts.clear();
+            adapter.notifyDataSetChanged();
+            for (String key: contactData.keySet()){
+                HashMap<String,Object> eachContact = (HashMap<String, Object>) contactData.get(key);
+                String contactID = key;
+
+                String contactEmail = "";
+                String contactPhone = "";
+                String contactWebsite = "";
+                String contactCategory = "";
+                String contactCampus = "";
+
+                if (eachContact.get("email") != null){
+                    contactEmail = (String) eachContact.get("email");
+                }
+                if (eachContact.get("phone") != null){
+                    contactPhone = (String) eachContact.get("phone");
+                }
+                if (eachContact.get("website") != null){
+                    contactWebsite = (String) eachContact.get("website");
+                }
+                if (eachContact.get("category") != null){
+                    contactCategory = (String) eachContact.get("category");
+                }
+                if (eachContact.get("campus") != null){
+                    contactCampus = (String) eachContact.get("campus");
+                }
+
+                if (contactCampus.equals(button.getText().toString())){
+                    Contact contact = new Contact(contactID,contactID,contactCategory,
+                            "", "","",
+                            contactEmail,contactPhone,contactWebsite,contactCampus);
+                    contacts.add(contact);
+                }
+
+            }
+
+            if (contacts.isEmpty()){
+                Snackbar.make(getView(),"Oops, we tried loading, but no contact found here\nTap to reload...",Snackbar.LENGTH_LONG).setAction("", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        contactReloading(button,adapter);
+                    }
+                }).show();
+            }
+
+        }
+
 
     }
 
@@ -651,7 +834,11 @@ class CustomServiceAdaptor extends ArrayAdapter<Service> {
                             Random r = new Random();
                             int i1 = r.nextInt(999999999);
                             HashMap<String, Object> valueAdded = new HashMap<>();
-                            valueAdded.put("from","Android User");
+                            String displayName = "Android User";
+                            if (FirebaseAuth.getInstance().getCurrentUser() != null){
+                                displayName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+                            }
+                            valueAdded.put("from",displayName);
                             valueAdded.put("number","0.0");
                             valueAdded.put("timestamp",ServerValue.TIMESTAMP);
 
